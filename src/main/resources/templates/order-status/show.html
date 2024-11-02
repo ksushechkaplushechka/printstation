@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали Статуса Заказа</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Детали Статуса Заказа</h1>
+    <p><strong>Статус:</strong> <span th:text="${orderStatus.statusName}">Статус</span></p>
+    <a th:href="@{/order-status/{id}/edit(id=${orderStatus.id})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/order-status/{id}/delete(id=${orderStatus.id})}" method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/order-status" class="btn btn-secondary">Назад к списку</a>
+</div>
+</body>
+</html>

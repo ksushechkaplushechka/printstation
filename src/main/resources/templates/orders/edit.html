@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактировать Заказ</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Редактировать Заказ</h1>
+  <form th:action="@{/orders/{id}(id=${order.id})}" method="post">
+    <div class="form-group">
+      <label for="orderName">Наименование заказа:</label>
+      <input type="text" id="orderName" name="orderName" class="form-control" th:value="${order.orderName}" required>
+    </div>
+    <div class="form-group">
+      <label for="client">Клиент:</label>
+      <select id="client" name="client" class="form-control" required>
+        <option th:each="client : ${clients}"
+                th:value="${client.id}"
+                th:text="${client.fullName}"
+                th:selected="${client.id == order.client.id}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="service">Услуга:</label>
+      <select id="service" name="service" class="form-control" required>
+        <option th:each="service : ${services}"
+                th:value="${service.id}"
+                th:text="${service.name}"
+                th:selected="${service.id == order.service.id}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="employee">Сотрудник:</label>
+      <select id="employee" name="employee" class="form-control" required>
+        <option th:each="employee : ${employees}"
+                th:value="${employee.id}"
+                th:text="${employee.name}"
+                th:selected="${employee.id == order.employee.id}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="contractNumber">Номер договора:</label>
+      <input type="text" id="contractNumber" name="contractNumber" class="form-control" th:value="${order.contractNumber}" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Состояние заказа:</label>
+      <select id="status" name="status" class="form-control" required>
+        <option th:each="status : ${statuses}"
+                th:value="${status.id}"
+                th:text="${status.statusName}"
+                th:selected="${status.id == order.status.id}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="/orders" class="btn btn-secondary">Назад к списку заказов</a>
+  </form>
+</div>
+</body>
+</html>

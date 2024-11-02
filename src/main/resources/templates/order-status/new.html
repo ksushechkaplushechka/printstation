@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить Новый Статус Заказа</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Добавить Новый Статус Заказа</h1>
+    <form th:action="@{/order-status}" method="post">
+        <div class="form-group">
+            <label for="statusName">Статус:</label>
+            <input type="text" id="statusName" name="statusName" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/order-status" class="btn btn-secondary">Назад к списку</a>
+    </form>
+</div>
+</body>
+</html>

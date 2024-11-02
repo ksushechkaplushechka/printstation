@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиент</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Клиент</h1>
+    <p><strong>ID:</strong> <span th:text="${client.id}"></span></p>
+    <p><strong>ФИО:</strong> <span th:text="${client.fullName}"></span></p>
+    <p><strong>Адрес:</strong> <span th:text="${client.address}"></span></p>
+    <p><strong>Телефон:</strong> <span th:text="${client.phone}"></span></p>
+    <a href="/clients" class="btn btn-secondary">Назад</a>
+    <a th:href="@{/clients/{id}/edit(id=${client.id})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/clients/{id}/delete(id=${client.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+</body>
+</html>

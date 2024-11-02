@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Продуктов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Список Продуктов</h1>
+    <a href="/products/new" class="btn btn-success mb-3">Добавить Новый Продукт</a>
+    <a href="/" class="btn btn-primary mb-3">На Главное Окно</a>
+
+    <form id="searchForm" th:action="@{/products/search}" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Поиск продукта">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Поиск</button>
+                <button type="button" class="btn btn-danger" onclick="resetSearch()">Сбросить</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Наименование Поставщика</th>
+            <th>Цена Закупки</th>
+            <th>Код Группы</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.supplier.name}"></td>
+            <td th:text="${product.purchasePrice}"></td>
+            <td th:text="${product.productGroup.groupName}"></td>
+            <td>
+                <a th:href="@{/products/{id}(id=${product.id})}" class="btn btn-info btn-sm">Просмотр</a>
+                <a th:href="@{/products/{id}/edit(id=${product.id})}" class="btn btn-warning btn-sm">Редактировать</a>
+                <form action="#" th:action="@{/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function resetSearch() {
+        // Удаляем текст из поля ввода
+        document.querySelector('input[name="query"]').value = '';
+        // Перезагружаем страницу для сброса результатов поиска
+        document.getElementById('searchForm').submit();
+    }
+</script>
+</body>
+</html>

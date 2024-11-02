@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать сотрудника</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const inn = document.getElementById("inn").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+            const role = document.getElementById("role").value;
+
+            const namePattern = /^[A-Za-zА-Яа-яЁё]+(?: [A-Za-zА-Яа-яЁё]+)+$/;
+            const innPattern = /^\d{10,12}$/;
+            const addressPattern = /^[^.,?!;:]*[0-9]+[^.,?!;:]*$/;  // Адрес должен содержать хотя бы одну цифру и не иметь знаков препинания
+            const phonePattern = /^(8|9)\d{10}$/; // Телефон должен начинаться с 8 или 9 и содержать 11 цифр
+
+            if (!namePattern.test(name)) {
+                alert("Имя должно состоять минимум из двух слов, каждое из которых содержит не менее двух букв, и содержать только буквы и пробелы.");
+                return false;
+            }
+
+            if (!innPattern.test(inn)) {
+                alert("ИНН должен содержать от 10 до 12 цифр.");
+                return false;
+            }
+
+            if (!addressPattern.test(address)) {
+                alert("Адрес должен содержать хотя бы одну цифру и не должен содержать знаков препинания.");
+                return false;
+            }
+
+            if (!phonePattern.test(phone)) {
+                alert("Телефон должен начинаться с '8' или '9' и содержать 11 цифр.");
+                return false;
+            }
+
+            if (role === "") {
+                alert("Выберите роль из списка.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Редактировать сотрудника</h1>
+    <form action="/employees/{id}" method="post" th:action="@{/employees/{id}(id=${employee.id})}" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="name">Имя (два слова, только буквы):</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${employee.name}" required>
+            <small class="form-text text-muted">Имя должно состоять минимум из двух слов, каждое из которых имеет не менее двух букв.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="inn">ИНН (10-12 цифр):</label>
+            <input type="text" id="inn" name="inn" class="form-control" th:value="${employee.inn}" pattern="^\d{10,12}$" required>
+            <small class="form-text text-muted">ИНН должен содержать от 10 до 12 цифр.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес (должен содержать хотя бы одну цифру и не должен содержать знаков препинания):</label>
+            <input type="text" id="address" name="address" class="form-control" th:value="${employee.address}" required>
+            <small class="form-text text-muted">Адрес должен содержать хотя бы одну цифру и не должен содержать знаков препинания.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон (должен начинаться с 8 или 9 и содержать 11 цифр):</label>
+            <input type="text" id="phone" name="phone" class="form-control" th:value="${employee.phone}" pattern="^(8|9)\d{10}$" required>
+            <small class="form-text text-muted">Телефон должен начинаться с '8' или '9' и содержать 11 цифр.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Роль:</label>
+            <select id="role" name="roleId" class="form-control" required>
+                <option value="">Выберите роль</option>
+                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
+                        th:selected="${role.id == employee.role.id}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    <a th:href="@{/employees}" class="btn btn-secondary mt-3">Назад к списку сотрудников</a>
+</div>
+</body>
+</html>

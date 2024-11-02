@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали Печати</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Детали Печати</h1>
+    <p><strong>ID Печати:</strong> <span th:text="${print.id}"></span></p>
+    <p><strong>Название:</strong> <span th:text="${print.name}"></span></p>
+    <p><strong>Машина:</strong> <span th:text="${print.machine.name}"></span></p>
+
+    <div class="mt-3">
+        <a th:href="@{/prints/{id}/edit(id=${print.id})}" class="btn btn-warning">Редактировать</a>
+        <form th:action="@{/prints/{id}/delete(id=${print.id})}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
+
+    <br>
+    <a href="/prints" class="btn btn-secondary">Назад к списку печатей</a>
+</div>
+</body>
+</html>

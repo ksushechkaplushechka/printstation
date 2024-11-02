@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить контракт</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Добавить контракт</h1>
+    <form th:action="@{/contracts}" method="post" th:object="${contract}">
+        <div class="form-group">
+            <label for="contractNumber">Номер контракта</label>
+            <input type="text" id="contractNumber" name="contractNumber" class="form-control" required
+                   th:field="*{contractNumber}">
+            <div th:if="${#fields.hasErrors('contractNumber')}" class="text-danger">
+                <p th:errors="*{contractNumber}">Ошибка</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contractDate">Дата контракта</label>
+            <input type="date" id="contractDate" name="contractDate" class="form-control" required
+                   th:field="*{contractDate}">
+            <div th:if="${#fields.hasErrors('contractDate')}" class="text-danger">
+                <p th:errors="*{contractDate}">Ошибка</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contractSum">Сумма контракта</label>
+            <input type="number" id="contractSum" name="contractSum" class="form-control" step="0.01" required
+                   th:field="*{contractSum}">
+            <div th:if="${#fields.hasErrors('contractSum')}" class="text-danger">
+                <p th:errors="*{contractSum}">Ошибка</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/contracts" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+</body>
+</html>

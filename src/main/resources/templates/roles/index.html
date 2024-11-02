@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Список Ролей</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Список Ролей</h1>
+
+    <div class="mb-3">
+        <form action="/roles" method="get" class="form-inline">
+            <input type="text" name="search" class="form-control mr-2" placeholder="Поиск по ролям" th:value="${search}">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+            <a href="/roles" class="btn btn-secondary ml-2">Сбросить поиск</a>
+        </form>
+    </div>
+
+    <a href="/roles/new" class="btn btn-success mb-3">Добавить Новую Роль</a>
+    <a href="/" class="btn btn-info mb-3">На Главное Окно</a> <!-- Кнопка для возврата на главное окно -->
+
+    <ul class="list-group">
+        <th:block th:each="role : ${roles}">
+            <li class="list-group-item">
+                <a th:href="@{/roles/{id}(id=${role.id})}" th:text="${role.name}"></a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

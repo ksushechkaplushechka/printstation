@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о сотруднике</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Информация о сотруднике</h1>
+    <p><strong>ID:</strong> <span th:text="${employee.id}"></span></p>
+    <p><strong>Имя:</strong> <span th:text="${employee.name}"></span></p>
+    <p><strong>ИНН:</strong> <span th:text="${employee.inn}"></span></p>
+    <p><strong>Адрес:</strong> <span th:text="${employee.address}"></span></p>
+    <p><strong>Телефон:</strong> <span th:text="${employee.phone}"></span></p>
+    <p><strong>Роль:</strong> <span th:text="${employee.role.name}"></span></p>
+    <a th:href="@{/employees}" class="btn btn-secondary mt-3">Назад к списку сотрудников</a>
+</div>
+</body>
+</html>

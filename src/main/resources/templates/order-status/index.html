@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Статусов Заказов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Список Статусов Заказов</h1>
+
+    <div class="mb-3 d-flex">
+        <a href="/order-status/new" class="btn btn-success me-2">Добавить Новый Статус Заказа</a>
+        <a href="/" class="btn btn-primary me-2">Вернуться на Главную</a>
+    </div>
+
+    <form th:action="@{/order-status/search}" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Поиск статуса">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Поиск</button>
+                <a href="/order-status" class="btn btn-danger">Сбросить</a>
+            </div>
+        </div>
+    </form>
+
+    <ul class="list-group">
+        <th:block th:each="orderStatus : ${orderStatusList}">
+            <li class="list-group-item">
+                <a th:href="@{/order-status/{id}(id=${orderStatus.id})}" th:text="${orderStatus.statusName}">Статус Заказа</a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+</body>
+</html>

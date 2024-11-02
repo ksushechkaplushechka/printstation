@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали Группы Продуктов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Детали Группы Продуктов</h1>
+    <p><strong>Название:</strong> <span th:text="${groupProduct.groupName}">Название Группы</span></p>
+    <a th:href="@{/group-products/{id}/edit(id=${groupProduct.id})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/group-products/{id}/delete(id=${groupProduct.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/group-products" class="btn btn-secondary">Назад к списку</a>
+</div>
+</body>
+</html>

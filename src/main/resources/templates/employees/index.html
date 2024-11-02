@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список сотрудников</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Список сотрудников</h1>
+    <a href="/employees/new" class="btn btn-success mb-3">Добавить нового сотрудника</a>
+    <a href="/" class="btn btn-primary mb-3">На главное окно</a> <!-- Кнопка возвращения на главное окно -->
+
+    <form action="/employees/search" method="get" class="mb-4" id="searchForm">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Поиск по имени">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+                <button type="button" class="btn btn-danger" onclick="resetSearch()">Сбросить</button> <!-- Кнопка сброса поиска -->
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>ИНН</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Роль</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.inn}"></td>
+            <td th:text="${employee.address}"></td>
+            <td th:text="${employee.phone}"></td>
+            <td th:text="${employee.role.name}"></td>
+            <td>
+                <a th:href="@{/employees/{id}(id=${employee.id})}" class="btn btn-info btn-sm">Просмотр</a>
+                <a th:href="@{/employees/{id}/edit(id=${employee.id})}" class="btn btn-warning btn-sm">Редактировать</a>
+                <form action="#" th:action="@{/employees/{id}/delete(id=${employee.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function resetSearch() {
+        // Сбрасываем значение поля ввода
+        document.querySelector('input[name="query"]').value = '';
+        // Отправляем форму для получения всех сотрудников
+        document.getElementById('searchForm').submit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали Поставщика</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Детали Поставщика</h1>
+    <p><strong>ID Поставщика:</strong> <span th:text="${supplier.id}"></span></p>
+    <p><strong>Название:</strong> <span th:text="${supplier.name}"></span></p>
+    <p><strong>Адрес:</strong> <span th:text="${supplier.address}"></span></p>
+    <p><strong>Телефон:</strong> <span th:text="${supplier.phone}"></span></p>
+
+    <a th:href="@{/suppliers/{id}/edit(id=${supplier.id})}" class="btn btn-primary">Редактировать</a>
+
+    <form th:action="@{/suppliers/{id}/delete(id=${supplier.id})}" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+
+    <a href="/suppliers" class="btn btn-secondary">Назад к списку поставщиков</a>
+</div>
+</body>
+</html>

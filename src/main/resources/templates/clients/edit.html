@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать клиента</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Редактировать клиента</h1>
+    <form th:action="@{/clients/{id}(id=${client.id})}" th:object="${client}" method="post">
+        <input type="hidden" name="id" th:value="${client.id}">
+
+        <div class="form-group">
+            <label for="fullName">ФИО</label>
+            <input type="text" id="fullName" name="fullName" class="form-control" th:field="*{fullName}" required aria-describedby="fullNameError" aria-invalid="${#fields.hasErrors('fullName') ? 'true' : 'false'}">
+            <div id="fullNameError" class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Ошибка</div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес</label>
+            <input type="text" id="address" name="address" class="form-control" th:field="*{address}" required aria-describedby="addressError" aria-invalid="${#fields.hasErrors('address') ? 'true' : 'false'}">
+            <div id="addressError" class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Ошибка</div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="text" id="phone" name="phone" class="form-control" th:field="*{phone}" required aria-describedby="phoneError" aria-invalid="${#fields.hasErrors('phone') ? 'true' : 'false'}">
+            <div id="phoneError" class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Ошибка</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/clients" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+</body>
+</html>

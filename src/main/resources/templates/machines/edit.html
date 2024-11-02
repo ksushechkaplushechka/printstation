@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать Машину</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Редактировать Машину</h1>
+    <form th:action="@{/machines/{id}(id=${machine.id})}" method="post">
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${machine.name}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <input type="text" id="description" name="description" class="form-control" th:value="${machine.description}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/machines" class="btn btn-secondary">Назад к списку</a>
+    </form>
+</div>
+</body>
+</html>

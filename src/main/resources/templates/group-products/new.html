@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить Новую Группу Продуктов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Добавить Новую Группу Продуктов</h1>
+    <form th:action="@{/group-products}" method="post">
+        <div class="form-group">
+            <label for="groupName">Название:</label>
+            <input type="text" id="groupName" name="groupName" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/group-products" class="btn btn-secondary">Назад к списку</a>
+    </form>
+</div>
+</body>
+</html>

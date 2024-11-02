@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали Продукта</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Детали Продукта</h1>
+    <p><strong>ID Продукта:</strong> <span th:text="${product.id}"></span></p>
+    <p><strong>Название:</strong> <span th:text="${product.name}"></span></p>
+    <p><strong>Описание:</strong> <span th:text="${product.description}"></span></p>
+    <p><strong>Цена:</strong> <span th:text="${product.purchasePrice}"></span></p>
+    <p><strong>Наименование Поставщика:</strong> <span th:text="${product.supplier.name}"></span></p>
+    <p><strong>Код Группы:</strong> <span th:text="${product.productGroup.groupName}"></span></p>
+
+    <a href="/products" class="btn btn-secondary">Назад к списку продуктов</a>
+    <a th:href="@{/products/{id}/edit(id=${product.id})}" class="btn btn-warning">Редактировать</a>
+    <form action="#" th:action="@{/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

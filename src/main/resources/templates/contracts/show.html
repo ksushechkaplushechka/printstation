@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контракт</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Контракт</h1>
+    <p><strong>Номер контракта:</strong> <span th:text="${contract.contractNumber}"></span></p>
+    <p><strong>Дата контракта:</strong> <span th:text="${contract.contractDate}"></span></p>
+    <p><strong>Сумма контракта:</strong> <span th:text="${contract.contractSum}"></span></p>
+    <a href="/contracts" class="btn btn-secondary">Назад</a>
+    <a th:href="@{/contracts/{contractNumber}/edit(contractNumber=${contract.contractNumber})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/contracts/{contractNumber}/delete(contractNumber=${contract.contractNumber})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+</body>
+</html>

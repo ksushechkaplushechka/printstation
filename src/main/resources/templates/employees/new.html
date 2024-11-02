@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить сотрудника</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Добавить нового сотрудника</h1>
+
+    <!-- Вывод сообщений об ошибках -->
+    <div th:if="${errorMessages != null}">
+        <div class="alert alert-danger">
+            <ul>
+                <li th:each="error : ${errorMessages}" th:text="${error.message}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <form action="/employees" method="post">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="inn">ИНН:</label>
+            <input type="text" id="inn" name="inn" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" name="address" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="text" id="phone" name="phone" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="role">Роль:</label>
+            <select id="role" name="roleId" class="form-control" required>
+                <option th:each="role : ${roles}"
+                        th:value="${role.id}"
+                        th:text="${role.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    <a href="/employees" class="btn btn-secondary mt-3">Назад к списку сотрудников</a>
+</div>
+</body>
+</html>

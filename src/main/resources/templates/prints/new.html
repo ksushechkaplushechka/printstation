@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добавить Новую Печать</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mb-4">Добавить Новую Печать</h1>
+  <form th:action="@{/prints}" method="post">
+    <div class="form-group">
+      <label for="name">Название:</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="machine">Машина:</label>
+      <select id="machine" name="machineId" class="form-control" required>
+        <option th:each="machine : ${machines}"
+                th:value="${machine.id}"
+                th:text="${machine.name}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="/prints" class="btn btn-secondary">Назад к списку печатей</a>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Детали Роли</title>
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Детали Роли</h1>
+  <p><strong>ID Роли:</strong> <span th:text="${role.id}"></span></p>
+  <p><strong>Название:</strong> <span th:text="${role.name}"></span></p>
+  <a th:href="@{/roles/{id}/edit(id=${role.id})}" class="btn btn-warning">Редактировать</a>
+  <form th:action="@{/roles/{id}/delete(id=${role.id})}" method="post" class="d-inline">
+    <button type="submit" class="btn btn-danger">Удалить</button>
+  </form>
+  <a href="/roles" class="btn btn-secondary mt-3">Назад к списку ролей</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

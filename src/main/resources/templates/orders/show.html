@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали Заказа</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Детали Заказа</h1>
+    <p><strong>ID Заказа:</strong> <span th:text="${order.id}"></span></p>
+    <p><strong>Наименование заказа:</strong> <span th:text="${order.orderName}"></span></p>
+    <p><strong>Клиент:</strong> <span th:text="${order.client.fullName}"></span></p>
+    <p><strong>Услуга:</strong> <span th:text="${order.service.name}"></span></p>
+    <p><strong>Сотрудник:</strong> <span th:text="${order.employee.name}"></span></p>
+    <p><strong>Номер договора:</strong> <span th:text="${order.contractNumber}"></span></p>
+    <p><strong>Состояние заказа:</strong> <span th:text="${order.status.statusName}"></span></p>
+
+    <a th:href="@{/orders/{id}/edit(id=${order.id})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/orders/{id}/delete(id=${order.id})}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/orders" class="btn btn-secondary">Назад к списку заказов</a>
+</div>
+</body>
+</html>

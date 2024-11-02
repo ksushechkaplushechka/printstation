@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контракты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Список контрактов</h1>
+
+    <a href="/" class="btn btn-secondary mb-3">Вернуться на главную</a>
+
+    <a href="/contracts/new" class="btn btn-primary mb-3">Добавить контракт</a>
+
+    <form action="/contracts/search" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="query" placeholder="Поиск по номеру контракта" class="form-control" required>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Поиск</button>
+                <a href="/contracts" class="btn btn-danger">Сбросить</a>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Номер контракта</th>
+            <th>Дата контракта</th>
+            <th>Сумма контракта</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="contract : ${contracts}">
+            <tr>
+                <td th:text="${contract.contractNumber}"></td>
+                <td th:text="${contract.contractDate}"></td>
+                <td th:text="${contract.contractSum}"></td>
+                <td>
+                    <a th:href="@{/contracts/{contractNumber}(contractNumber=${contract.contractNumber})}" class="btn btn-info">Просмотр</a>
+                    <a th:href="@{/contracts/{contractNumber}/edit(contractNumber=${contract.contractNumber})}" class="btn btn-warning">Редактировать</a>
+                    <form th:action="@{/contracts/{contractNumber}/delete(contractNumber=${contract.contractNumber})}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

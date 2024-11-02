@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Машин</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Список Машин</h1>
+
+    <!-- Кнопка для возврата на главную страницу -->
+    <a href="/" class="btn btn-primary mb-3">Вернуться на Главную</a>
+
+    <!-- Форма поиска -->
+    <form th:action="@{/machines/search}" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Поиск по названию машины" required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+                <a href="/machines" class="btn btn-outline-danger">Сбросить</a> <!-- Изменено на ссылку -->
+            </div>
+        </div>
+    </form>
+
+    <a href="/machines/new" class="btn btn-success mb-3">Добавить Новую Машину</a>
+    <ul class="list-group">
+        <th:block th:each="machine : ${machines}">
+            <li class="list-group-item">
+                <a th:href="@{/machines/{id}(id=${machine.id})}" th:text="${machine.name}">Имя Машины</a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+</body>
+</html>
